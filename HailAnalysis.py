@@ -15,6 +15,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import (accuracy_score, precision_score, recall_score, 
                              roc_auc_score, roc_curve, precision_recall_curve, 
                              auc, confusion_matrix)
+from sklearn import __version__ as sklearn_version
+from sklearn.inspection import partial_dependence
 from sklearn.inspection import PartialDependenceDisplay
 from sklearn.model_selection import learning_curve
 from sklearn.tree import plot_tree
@@ -41,9 +43,7 @@ print(df.describe())
 
 df = df.sort_values('date').reset_index(drop=True)
 
-# 70-30 split
 split_idx = int(len(df) * 0.7)
-
 train_df = df.iloc[:split_idx].copy()
 test_df = df.iloc[split_idx:].copy()
 
@@ -144,7 +144,6 @@ pca = PCA(n_components=3)
 X_train_pca = pca.fit_transform(X_train_full_scaled)
 X_test_pca = pca.transform(X_test_full_scaled)
 
-# Create loadings dataframe
 loadings = pd.DataFrame(
     pca.components_.T,
     columns=['PC1', 'PC2', 'PC3'],
@@ -495,54 +494,23 @@ plt.close()
 
 
 # Figure 9: Partial Dependence Plots
-
-# Check scikit-learn version.....
-from sklearn import __version__ as sklearn_version
-sklearn_major_version = int(sklearn_version.split('.')[0])
-
-if sklearn_major_version >= 1:
-    # Modern scikit-learn (>= 1.0)
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-    display = PartialDependenceDisplay.from_estimator(
-        rf_model, 
-        X_train_full, 
-        features=[0, 1, 2],
-        feature_names=features_full,
-        ax=axes,
-        n_cols=3,
+    
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+for idx, (feature_idx, feature_name) in enumerate(zip([0, 1, 2], features_full)):
+    pd_result = partial_dependence(
+        rf_model,
+        X_train_full,
+        features=[feature_idx],
         grid_resolution=50
     )
-else:
-    # Older scikit-learn (< 1.0) - manual plotting
-    from sklearn.inspection import partial_dependence
-    
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-    
-    for idx, (feature_idx, feature_name) in enumerate(zip([0, 1, 2], features_full)):
-        # Calculate partial dependence
-        pd_result = partial_dependence(
-            rf_model,
-            X_train_full,
-            features=[feature_idx],
-            grid_resolution=50
-        )
-        
-        # Extract values
-        if hasattr(pd_result, 'average'):
-            # Newer format
-            avg_preds = pd_result['average'][0]
-            values = pd_result['values'][0]
-        else:
-            # Older format (tuple)
-            avg_preds = pd_result[0][0]
-            values = pd_result[1][0]
-        
-        # Plot
-        axes[idx].plot(values, avg_preds, linewidth=2.5, color='#2E86AB')
-        axes[idx].set_xlabel(feature_name.replace('_', ' ').title(), fontsize=11)
-        axes[idx].set_ylabel('Partial Dependence', fontsize=11)
-        axes[idx].set_title(feature_name.replace('_', ' ').title(), fontsize=12)
-        axes[idx].grid(alpha=0.3)
+    avg_preds = pd_result[0][0]
+    values = pd_result[1][0]
+
+    axes[idx].plot(values, avg_preds, linewidth=2.5, color='#2E86AB')
+    axes[idx].set_xlabel(feature_name.replace('_', ' ').title(), fontsize=11)
+    axes[idx].set_ylabel('Partial Dependence', fontsize=11)
+    axes[idx].set_title(feature_name.replace('_', ' ').title(), fontsize=12)
+    axes[idx].grid(alpha=0.3)
 
 plt.suptitle('Partial Dependence Plots: How Each Feature Affects Hail Probability', 
              fontsize=14, fontweight='bold', y=1.02)
