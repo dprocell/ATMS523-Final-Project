@@ -12,10 +12,7 @@
 - daily_hail.csv
     - Fields: date, hail_reports, hail_occurred
     - Years 1955-2023, daily hail reports. Contains only days WITH hail
-    - Filtered:
-    -     Geographically for "Hail Alley"
-    -     Time of study period: April - September 2020-2021
-    -     Hail size: significant hail is 1 inch in diameter or larger
+    - Filtered:Geographically for "Hail Alley", Time of study period: April - September 2020-2021, Hail size: significant hail is 1 inch in diameter or larger
     - Source: NOAA SPC: https://www.spc.noaa.gov/wcm/data/1955-2023_hail.csv
 - era5_processed.csv
     - Fields: date,cape,shear,freezing_level
