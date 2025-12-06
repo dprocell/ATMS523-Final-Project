@@ -31,7 +31,7 @@ os.makedirs('figures', exist_ok=True)
 # SECTION 1: LOAD DATA
 # =============================================================================
 
-df = pd.read_csv('data/final_dataset.csv')
+df = pd.read_csv('data/final_dataset_boxed.csv')
 df['date'] = pd.to_datetime(df['date'])
 
 print(df.shape)
