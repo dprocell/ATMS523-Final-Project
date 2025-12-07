@@ -4,25 +4,46 @@
 ### In this repository, we use ERA5 data to analyze how CAPE, wind shear, and freezing level affect significant hail formation using different ML models.
 
 #### Data Included:
-- era5_raw folder
-    - folder containing raw era5 reanalysis data in .nc format
-    - Fields: Time, lat, lon, variable (CAPE, shear, lifted index, freezing level)
-    - 1 x 1 degree resolution
-    - 18Z temporal resolution, April - September 2020-2021, daily data
-- daily_hail.csv
-    - Fields: date, hail_reports, hail_occurred
-    - Years 1955-2023, daily hail reports. Contains only days WITH hail
-    - Filtered:Geographically for "Hail Alley", Time of study period: April - September 2020-2021, Hail size: significant hail is 1 inch in diameter or larger
-    - Source: NOAA SPC: https://www.spc.noaa.gov/wcm/data/1955-2023_hail.csv
-- era5_processed.csv
-    - Fields: date,cape,shear,freezing_level
-    - consolidate 100 grid points per day to 1 per day - regional mean values
-    - atmospheric data for each day, regardless of hail or not
-    - spatial averaging introduces error by diluting the "extremes" part of severe weather
-- final_dataset.csv
-    - final cleaned dataset with the following fields: date,hail_occurred,cape,shear,freezing_level
-    - binary of 0 or 1 for hail/ no hail
-    - contains data for all days, not just hail days
+* era5_raw folder
+    * Contains raw era5 reanalysis data in .nc format from Copernicus: https://cds.climate.copernicus.eu/
+    * Data fields:
+        * CAPE (J/kg)
+        * Shear: U and V wind components at 500mb and 850mb (m/s)
+        * freezing level (m)
+    * Spatial resolution: 1 x 1 degree spatial resolution
+    * Region: 33-42°N, 103-94°W
+    * Time: 00Z
+    * Months: April - September
+    * Years: 2020-2021
+* hail_reports.csv
+    * Source: NOAA Storm Prediction Center: https://www.spc.noaa.gov/wcm/data/
+    * Fields:
+        * date (YYYY-MM-DD)
+        * slat
+        * slon
+        * mag (hail size in inches)
+        * mo (Month)
+    * Region: 33-42°N, 103-94°W
+    * Time: 00Z
+    * Months: April - September
+    * Years: 2020-2021
+* final_dataset_boxed.csv
+    * final cleaned dataset with hail samples, generated non hail samples, and CAPE=0 filtered out
+    * 5285 samples total, Hail: 2757 (51.2%), Non-hail: 2580 (48.8%)
+    * Columns
+        * date (YYYY-MM-DD)
+        * lat
+        * lon
+        * hail_occurred (binary target variable: 1=hail, 0=no hail)
+        * cape (J/kg)
+        * shear (0-6 km wind shear magnitude (m/s), calculated as √[(U₅₀₀-U₈₅₀)² + (V₅₀₀-V₈₅₀)²])
+        * freezing_level (meters above sea level)
+    * Date range: April 2, 2020 to September 29, 2021
+    * Spatial coverage: Hail Alley (33-42°N, 103-94°W)
+ 
+  #### Analysis Script
+  To run: 'python HailAnaylsis.py'
+
       
 
 
