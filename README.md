@@ -49,7 +49,19 @@
 
 
   #### Figures
-  * 
+  * all_models_metrics_comparison.png
+  * all_models_roc_comparison.png
+  * coefficient_comparison.png
+  * confusion_matrices.png
+  * feature_distributions.png
+  * figures/metrics_comparison.png
+  * figures/pca_biplot.png
+  * pca_loadings_variance.png
+  * rf_feature_importances.png
+  * rf_learning_curve.png
+  * rf_partial_dependence.png
+  * rf_sample_tree.png
+  * roc_pr_curves.png
 
       
 
