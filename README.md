@@ -3,7 +3,9 @@
 
 ### In this repository, we use ERA5 data to analyze how CAPE, wind shear, and freezing level affect significant hail formation using different ML models.
 
-#### Data Included:
+
+
+#### Data Included
 * era5_raw folder
     * Contains raw era5 reanalysis data in .nc format from Copernicus: https://cds.climate.copernicus.eu/
     * Data fields:
@@ -40,9 +42,14 @@
         * freezing_level (meters above sea level)
     * Date range: April 2, 2020 to September 29, 2021
     * Spatial coverage: Hail Alley (33-42°N, 103-94°W)
+
  
   #### Analysis Script
-  To run: 'python HailAnaylsis.py'
+  To run: `python HailAnaylsis.py`
+
+
+  #### Figures
+  * 
 
       
 
