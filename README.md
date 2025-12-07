@@ -4,7 +4,6 @@
 ### In this repository, we use ERA5 data to analyze how CAPE, wind shear, and freezing level affect significant hail formation using different ML models.
 
 
-
 #### Data Included
 * era5_raw folder
     * Contains raw era5 reanalysis data in .nc format from Copernicus: https://cds.climate.copernicus.eu/
@@ -63,6 +62,8 @@
   * rf_sample_tree.png
   * roc_pr_curves.png
 
-      
 
 
+#### Data Download script
+To download your own data, run `python boxed_data_download.py`
+this assumes you have your CDS API key set up on your machine: https://cds.climate.copernicus.eu/how-to-api
