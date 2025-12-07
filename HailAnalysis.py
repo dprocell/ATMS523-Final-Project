@@ -372,7 +372,7 @@ fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 coef_original = model_full_original.coef_[0]
 axes[0].barh(features_full, coef_original, color='#2E86AB', alpha=0.8)
 axes[0].set_xlabel('Coefficient Value', fontsize=12)
-axes[0].set_title('Original Coefficients\n(NOT directly comparable)', fontsize=12, fontweight='bold')
+axes[0].set_title('Original Coefficients\n(Pre z score normalization)', fontsize=12, fontweight='bold')
 axes[0].axvline(x=0, color='black', linestyle='--', alpha=0.3)
 axes[0].grid(axis='x', alpha=0.3)
 
@@ -380,7 +380,7 @@ axes[0].grid(axis='x', alpha=0.3)
 coef_standardized = model_full_scaled.coef_[0]
 axes[1].barh(features_full, coef_standardized, color='#A23B72', alpha=0.8)
 axes[1].set_xlabel('Standardized Coefficient Value', fontsize=12)
-axes[1].set_title('Standardized Coefficients\n(Directly comparable!)', fontsize=12, fontweight='bold')
+axes[1].set_title('Standardized Coefficients\n(Post z score normalization)', fontsize=12, fontweight='bold')
 axes[1].axvline(x=0, color='black', linestyle='--', alpha=0.3)
 axes[1].grid(axis='x', alpha=0.3)
 
