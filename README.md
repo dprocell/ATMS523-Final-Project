@@ -41,6 +41,11 @@
         * freezing_level (meters above sea level)
     * Date range: April 2, 2020 to September 29, 2021
     * Spatial coverage: Hail Alley (33-42°N, 103-94°W)
+<img width="2780" height="2963" alt="image" src="https://github.com/user-attachments/assets/804256b2-9fe3-4f13-918f-819f1c44798a" />
+
+<img width="3656" height="1850" alt="image" src="https://github.com/user-attachments/assets/417b29f7-4954-4a26-83d4-54a0a8b32f02" />
+
+
 
  
   #### Analysis Script
