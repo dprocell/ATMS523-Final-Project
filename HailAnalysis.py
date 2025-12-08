@@ -7,6 +7,8 @@ Summary: Using various machine learning techniques to determine hail prediction.
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
 import seaborn as sns
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
@@ -164,7 +166,6 @@ metrics_pca = evaluate_model(y_test, y_pred_pca, y_pred_proba_pca,
 # SECTION 6: MODEL D - RANDOM FOREST
 # =============================================================================
 
-# Train Random Forest
 rf_model = RandomForestClassifier(
     n_estimators=100,
     max_depth=5,
@@ -195,7 +196,7 @@ metrics_rf = evaluate_model(y_test, y_pred_rf, y_pred_proba_rf,
 # =============================================================================
 
 '''Hypothesis: Removing shear (weak correlation: +0.010) may improve performance
-by reducing multicollinearity while keeping physically meaningful variables'''
+by reducing multicollinearity while keeping more meaningful variables'''
 
 features_no_shear = ['cape', 'freezing_level']
 
@@ -503,8 +504,19 @@ for idx, (feature_idx, feature_name) in enumerate(zip([0, 1, 2], features_full))
         features=[feature_idx],
         grid_resolution=50
     )
-    avg_preds = pd_result[0][0]
-    values = pd_result[1][0]
+
+# Handle different sklearn versions. My home machine has an older version, work machine has newer.
+    if isinstance(pd_result, dict):
+        # New sklearn (≥1.0): returns dict with 'average' and 'grid_values'
+        avg_preds = pd_result['average'][0]
+        values = pd_result['grid_values'][0]
+    else:
+        # Old sklearn (<1.0): returns tuple
+        avg_preds = pd_result[0][0]
+        values = pd_result[1][0]
+
+    # avg_preds = pd_result[0][0]
+    # values = pd_result[1][0]
 
     axes[idx].plot(values, avg_preds, linewidth=2.5, color='#2E86AB')
     axes[idx].set_xlabel(feature_name.replace('_', ' ').title(), fontsize=11)
@@ -541,7 +553,7 @@ plt.savefig('figures/rf_sample_tree.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 
-# Figure 11: All Models ROC Comparison (NOW WITH 5 MODELS)
+# Figure 11: All Models ROC Comparison 
 
 fig, ax = plt.subplots(figsize=(10, 8))
 
@@ -571,7 +583,7 @@ plt.savefig('figures/all_models_roc_comparison.png', dpi=300, bbox_inches='tight
 plt.close()
 
 
-# Figure 12: All Models Metrics Comparison (NOW WITH 5 MODELS)
+# Figure 12: All Models Metrics Comparison 
 
 fig, ax = plt.subplots(figsize=(16, 6))
 
