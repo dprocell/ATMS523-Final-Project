@@ -42,6 +42,13 @@
     * Date range: April 2, 2020 to September 29, 2021
     * Spatial coverage: Hail Alley (33-42°N, 103-94°W)
 
+Source:
+ERA5 Reanalysis (atmospheric data):
+Hersbach, H., Bell, B., Berrisford, P., Hirahara, S., Horányi, A., Muñoz-Sabater, J., Nicolas, J., Peubey, C., Radu, R., Schepers, D., Simmons, A., Soci, C., Abdalla, S., Abellan, X., Balsamo, G., Bechtold, P., Biavati, G., Bidlot, J., Bonavita, M., De Chiara, G., Dahlgren, P., Dee, D., Diamantakis, M., Dragani, R., Flemming, J., Forbes, R., Fuentes, M., Geer, A., Haimberger, L., Healy, S., Hogan, R. J., Hólm, E., Janisková, M., Keeley, S., Laloyaux, P., Lopez, P., Lupu, C., Radnoti, G., de Rosnay, P., Rozum, I., Vamborg, F., Villaume, S., and Thépaut, J.-N. (2020). The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society, 146(730), 1999-2049. https://doi.org/10.1002/qj.3803
+
+NOAA Storm Prediction Center Severe Weather Reports (Hail Data)
+NOAA National Weather Service Storm Prediction Center (2024). Severe Weather Database Files (1950-present). National Oceanic and Atmospheric Administration. Retrieved from https://www.spc.noaa.gov/wcm/
+
 <img width="330" height="370" alt="box_methodology" src="https://github.com/user-attachments/assets/99534b40-746c-4d80-8b4f-12056a9ef676" />  
 
 <img width="450" height="270" alt="box_concept" src="https://github.com/user-attachments/assets/bc73ce6c-ebd4-4377-9e06-0056132cecd5" />
