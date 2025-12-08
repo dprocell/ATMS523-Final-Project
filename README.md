@@ -28,7 +28,7 @@
     * Time: 00Z
     * Months: April - September
     * Years: 2020-2021
-* final_dataset_boxed.csv
+* final_dataset_boxed.csv (00Z for atmoshperic variable extraction)
     * final cleaned dataset with hail samples, generated non hail samples, and CAPE=0 filtered out
     * 5285 samples total, Hail: 2757 (51.2%), Non-hail: 2580 (48.8%)
     * Columns
@@ -41,6 +41,12 @@
         * freezing_level (meters above sea level)
     * Date range: April 2, 2020 to September 29, 2021
     * Spatial coverage: Hail Alley (33-42°N, 103-94°W)
+* final_dataset_boxed_daily_max_cape.csv (Improved - Maximum CAPE extraction)
+    * Final cleaned dataset using daily maximum CAPE extraction method
+    * Atmospheric conditions extracted at time of maximum CAPE each day (better captures peak instability)
+    * Same structure as final_dataset_boxed.csv with additional columns:
+        * extraction_time (UTC timestamp of atmospheric data extraction)
+
 
  
   #### Analysis Script
