@@ -41,11 +41,10 @@
         * freezing_level (meters above sea level)
     * Date range: April 2, 2020 to September 29, 2021
     * Spatial coverage: Hail Alley (33-42°N, 103-94°W)
-* final_dataset_boxed_daily_max_cape.csv (Improved - Maximum CAPE extraction)
+* final_dataset_boxed_daily_max_cape.csv (Maximum daily CAPE extraction)
     * Final cleaned dataset using daily maximum CAPE extraction method
-    * Atmospheric conditions extracted at time of maximum CAPE each day (better captures peak instability)
-    * Same structure as final_dataset_boxed.csv with additional columns:
-        * extraction_time (UTC timestamp of atmospheric data extraction)
+    * Atmospheric conditions extracted at time of maximum CAPE each day
+    * Performs better with linear models 
 
 
 
