@@ -164,7 +164,6 @@ metrics_pca = evaluate_model(y_test, y_pred_pca, y_pred_proba_pca,
 # SECTION 6: MODEL D - RANDOM FOREST
 # =============================================================================
 
-# Train Random Forest
 rf_model = RandomForestClassifier(
     n_estimators=100,
     max_depth=5,
@@ -195,7 +194,7 @@ metrics_rf = evaluate_model(y_test, y_pred_rf, y_pred_proba_rf,
 # =============================================================================
 
 '''Hypothesis: Removing shear (weak correlation: +0.010) may improve performance
-by reducing multicollinearity while keeping physically meaningful variables'''
+by reducing multicollinearity while keeping more meaningful variables'''
 
 features_no_shear = ['cape', 'freezing_level']
 
@@ -541,7 +540,7 @@ plt.savefig('figures/rf_sample_tree.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 
-# Figure 11: All Models ROC Comparison (NOW WITH 5 MODELS)
+# Figure 11: All Models ROC Comparison 
 
 fig, ax = plt.subplots(figsize=(10, 8))
 
@@ -571,7 +570,7 @@ plt.savefig('figures/all_models_roc_comparison.png', dpi=300, bbox_inches='tight
 plt.close()
 
 
-# Figure 12: All Models Metrics Comparison (NOW WITH 5 MODELS)
+# Figure 12: All Models Metrics Comparison 
 
 fig, ax = plt.subplots(figsize=(16, 6))
 
