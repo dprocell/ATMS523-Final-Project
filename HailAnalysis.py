@@ -7,6 +7,8 @@ Summary: Using various machine learning techniques to determine hail prediction.
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
 import seaborn as sns
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
@@ -502,8 +504,19 @@ for idx, (feature_idx, feature_name) in enumerate(zip([0, 1, 2], features_full))
         features=[feature_idx],
         grid_resolution=50
     )
-    avg_preds = pd_result[0][0]
-    values = pd_result[1][0]
+
+# Handle different sklearn versions. My home machine has an older version, work machine has newer.
+    if isinstance(pd_result, dict):
+        # New sklearn (≥1.0): returns dict with 'average' and 'grid_values'
+        avg_preds = pd_result['average'][0]
+        values = pd_result['grid_values'][0]
+    else:
+        # Old sklearn (<1.0): returns tuple
+        avg_preds = pd_result[0][0]
+        values = pd_result[1][0]
+
+    # avg_preds = pd_result[0][0]
+    # values = pd_result[1][0]
 
     axes[idx].plot(values, avg_preds, linewidth=2.5, color='#2E86AB')
     axes[idx].set_xlabel(feature_name.replace('_', ' ').title(), fontsize=11)
