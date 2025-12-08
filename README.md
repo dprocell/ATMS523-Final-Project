@@ -76,8 +76,23 @@ this assumes you have your CDS API key set up on your machine: https://cds.clima
 
 #### Data Cited
 
-##### ERA5 Reanalysis (atmospheric data):
-Hersbach, H., Bell, B., Berrisford, P., Hirahara, S., Horányi, A., Muñoz-Sabater, J., Nicolas, J., Peubey, C., Radu, R., Schepers, D., Simmons, A., Soci, C., Abdalla, S., Abellan, X., Balsamo, G., Bechtold, P., Biavati, G., Bidlot, J., Bonavita, M., De Chiara, G., Dahlgren, P., Dee, D., Diamantakis, M., Dragani, R., Flemming, J., Forbes, R., Fuentes, M., Geer, A., Haimberger, L., Healy, S., Hogan, R. J., Hólm, E., Janisková, M., Keeley, S., Laloyaux, P., Lopez, P., Lupu, C., Radnoti, G., de Rosnay, P., Rozum, I., Vamborg, F., Villaume, S., and Thépaut, J.-N. (2020). The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society, 146(730), 1999-2049. https://doi.org/10.1002/qj.3803
+##### ERA5 Reanalysis (Atmospheric Data):
+
+Hersbach, H., Bell, B., Berrisford, P., Hirahara, S., Horányi, A., Muñoz-Sabater, J., 
+    Nicolas, J., Peubey, C., Radu, R., Schepers, D., Simmons, A., Soci, C., Abdalla, 
+    S., Abellan, X., Balsamo, G., Bechtold, P., Biavati, G., Bidlot, J., Bonavita, M., 
+    De Chiara, G., Dahlgren, P., Dee, D., Diamantakis, M., Dragani, R., Flemming, J., 
+    Forbes, R., Fuentes, M., Geer, A., Haimberger, L., Healy, S., Hogan, R. J., Hólm, 
+    E., Janisková, M., Keeley, S., Laloyaux, P., Lopez, P., Lupu, C., Radnoti, G., de 
+    Rosnay, P., Rozum, I., Vamborg, F., Villaume, S., and Thépaut, J.-N. (2020). The 
+    ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society, 
+    146(730), 1999-2049. https://doi.org/10.1002/qj.3803
+
+Hersbach, H., Bell, B., Berrisford, P., Biavati, G., Horányi, A., Muñoz Sabater, J., 
+    Nicolas, J., Peubey, C., Radu, R., Rozum, I., Schepers, D., Simmons, A., Soci, C., 
+    Dee, D., Thépaut, J-N. (2023). ERA5 hourly data on single levels from 1940 to 
+    present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). 
+    https://doi.org/10.24381/cds.adbb2d47
 
 ##### NOAA Storm Prediction Center Severe Weather Reports (Hail Data)
 NOAA National Weather Service Storm Prediction Center (2024). Severe Weather Database Files (1950-present). National Oceanic and Atmospheric Administration. Retrieved from https://www.spc.noaa.gov/wcm/
