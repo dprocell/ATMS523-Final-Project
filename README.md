@@ -42,10 +42,9 @@
     * Date range: April 2, 2020 to September 29, 2021
     * Spatial coverage: Hail Alley (33-42°N, 103-94°W)
 
-<img width="290" height="330" alt="box_methodology" src="https://github.com/user-attachments/assets/99534b40-746c-4d80-8b4f-12056a9ef676" />
+<img width="330" height="370" alt="box_methodology" src="https://github.com/user-attachments/assets/99534b40-746c-4d80-8b4f-12056a9ef676" />  
 
-
-<img width="420" height="250" alt="box_concept" src="https://github.com/user-attachments/assets/bc73ce6c-ebd4-4377-9e06-0056132cecd5" />
+<img width="450" height="270" alt="box_concept" src="https://github.com/user-attachments/assets/bc73ce6c-ebd4-4377-9e06-0056132cecd5" />
 
  
   #### Analysis Script
