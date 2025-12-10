@@ -31,29 +31,27 @@ import sys
 # DATASET SELECTION
 # =============================================================================
 
-# Check if argument provided
 if len(sys.argv) > 1:
     dataset_choice = sys.argv[1].lower()
     if dataset_choice not in ['fixed_time', 'daily_max_cape']:
-        print(f"ERROR: Invalid argument '{sys.argv[1]}'")
-        print("Usage: python HailAnalysis.py [fixed_time|daily_max_cape]")
+        print(" Error: Dataset argument requireed (1 or 2)")
         sys.exit(1)
 else:
     print("Which dataset would you like to analyze?")
-    print("  1. fixed_time      - 00Z fixed time extraction (Dataset 1)")
-    print("  2. daily_max_cape  - Daily maximum CAPE extraction (Dataset 2)")
+    print("1. fixed_time - 00Z fixed time extraction (Dataset 1)")
+    print("2. daily_max_cape - Daily maximum CAPE extraction (Dataset 2)")
     
     while True:
-        user_input = input("Enter your choice (1 or 2, or 'fixed_time'/'daily_max_cape'): ").strip().lower()
+        user_input = input("Enter your dataset choice (1 or 2): ").strip().lower()
         
-        if user_input in ['1', 'fixed_time']:
+        if user_input in ['1']:
             dataset_choice = 'fixed_time'
             break
-        elif user_input in ['2', 'daily_max_cape']:
+        elif user_input in ['2']:
             dataset_choice = 'daily_max_cape'
             break
         else:
-            print("Invalid input. Please enter 1, 2, 'fixed_time', or 'daily_max_cape'")
+            print("Invalid input. Please enter 1 or 2.")
 
 if dataset_choice == 'fixed_time':
     data_file = 'data/final_dataset_fixed_time.csv'
