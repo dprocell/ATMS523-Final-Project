@@ -44,7 +44,8 @@ We found that Model D (Random Forest) works best for Dataset 1 (hail data + dail
     * Time: 00Z
     * Months: April - September
     * Years: 2020-2021
-* final_dataset_boxed.csv (00Z for atmoshperic variable extraction)
+* final_dataset_fixed_time.csv (00Z for atmoshperic variable extraction)
+    * Fixed time approach for atmospheric data - always extracted at 00Z
     * final cleaned dataset with hail samples, generated non hail samples, and CAPE=0 filtered out
     * 5285 samples total, Hail: 2757 (51.2%), Non-hail: 2580 (48.8%)
     * Columns
@@ -57,7 +58,7 @@ We found that Model D (Random Forest) works best for Dataset 1 (hail data + dail
         * freezing_level (meters above sea level)
     * Date range: April 2, 2020 to September 29, 2021
     * Spatial coverage: Hail Alley (33-42°N, 103-94°W)
-* final_dataset_boxed_daily_max_cape.csv (Maximum daily CAPE extraction)
+* final_dataset_daily_max_cape.csv (Maximum daily CAPE extraction)
     * Final cleaned dataset, same as final_dataset_boxed.csv, but using daily maximum CAPE instead of fixed time of 00Z
     * Atmospheric conditions extracted at time of maximum CAPE each day
     * Assumes hail occurs at same time as maximum CAPE, instead of guessing that hail occurs around 6pm CDT each day
@@ -91,9 +92,9 @@ The following results are included, but can also be generated from running `Hail
 
 ---
 #### Data Download Scripts
-To download your own data, run the python download scripts. You can choose either fixed 00Z atmoshperic data approach (initial) or maximum daily CAPE (secondary) approach. This assumes you have your CDS API key set up on your machine: https://cds.climate.copernicus.eu/how-to-api
-* run `python boxed_data_download.py` for fixed 00Z hail atmoshperic data + hail (initial approach, quicker)
-* run `python boxed_data_download_daily_max_cape.py` for maximum CAPE atmospheric data + hail (secondary approach, takes several hours)
+To download your own data, run the python download scripts. You can choose either fixed 00Z atmoshperic data approach (Dataset 1) or maximum daily CAPE (Dataset 2) approach. This assumes you have your CDS API key set up on your machine: https://cds.climate.copernicus.eu/how-to-api
+* run `python Download_Dataset1.py` for fixed 00Z hail atmoshperic data + hail (initial approach, quicker)
+* run `python Download_Dataset2.py` for maximum CAPE atmospheric data + hail (secondary approach, takes several hours)
 
 
 ---
