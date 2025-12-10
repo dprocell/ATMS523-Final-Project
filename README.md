@@ -47,6 +47,8 @@
     * Assumes hail occurs at same time as maximum CAPE, instead of guessing that hail occurs around 6pm CDT each day
     * Different approach, neither is perfect because hail reports from NOAA have no time fields, just date
 
+---
+#### Visual Example of Spatial Dataset
 
 
 <img width="330" height="370" alt="box_methodology" src="https://github.com/user-attachments/assets/99534b40-746c-4d80-8b4f-12056a9ef676" />  
