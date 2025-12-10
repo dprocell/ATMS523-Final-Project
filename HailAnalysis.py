@@ -2,6 +2,7 @@
 Author: Dara Procell
 Date: December 12, 2025
 Summary: Using various machine learning techniques to determine hail prediction.
+Usage: python HailAnalysis.py [fixed_time|daily_max_cape]
 """
 
 import pandas as pd
@@ -23,17 +24,57 @@ from sklearn.inspection import PartialDependenceDisplay
 from sklearn.model_selection import learning_curve
 from sklearn.tree import plot_tree
 import os
+import sys
 
+
+# =============================================================================
+# DATASET SELECTION
+# =============================================================================
+
+# Check if argument provided
+if len(sys.argv) > 1:
+    dataset_choice = sys.argv[1].lower()
+    if dataset_choice not in ['fixed_time', 'daily_max_cape']:
+        print(f"ERROR: Invalid argument '{sys.argv[1]}'")
+        print("Usage: python HailAnalysis.py [fixed_time|daily_max_cape]")
+        sys.exit(1)
+else:
+    print("Which dataset would you like to analyze?")
+    print("  1. fixed_time      - 00Z fixed time extraction (Dataset 1)")
+    print("  2. daily_max_cape  - Daily maximum CAPE extraction (Dataset 2)")
+    
+    while True:
+        user_input = input("Enter your choice (1 or 2, or 'fixed_time'/'daily_max_cape'): ").strip().lower()
+        
+        if user_input in ['1', 'fixed_time']:
+            dataset_choice = 'fixed_time'
+            break
+        elif user_input in ['2', 'daily_max_cape']:
+            dataset_choice = 'daily_max_cape'
+            break
+        else:
+            print("Invalid input. Please enter 1, 2, 'fixed_time', or 'daily_max_cape'")
+
+if dataset_choice == 'fixed_time':
+    data_file = 'data/final_dataset_boxed.csv'
+    figures_dir = 'figures/fixed_time'  
+    dataset_label = "00Z Fixed Time Extraction"
+elif dataset_choice == 'daily_max_cape':
+    data_file = 'data/final_dataset_boxed_daily_max_cape.csv'
+    figures_dir = 'figures/daily_max_cape'  
+    dataset_label = "Daily Maximum CAPE Extraction"
+
+# Create output directory
+os.makedirs(figures_dir, exist_ok=True)
 
 sns.set_style("whitegrid")
 plt.rcParams['figure.figsize'] = (12, 6)
-os.makedirs('figures', exist_ok=True)
 
 # =============================================================================
 # SECTION 1: LOAD DATA
 # =============================================================================
 
-df = pd.read_csv('data/final_dataset_boxed.csv')
+df = pd.read_csv(data_file)
 df['date'] = pd.to_datetime(df['date'])
 
 print(df.shape)
@@ -281,7 +322,7 @@ axes[1].legend(fontsize=10)
 axes[1].grid(alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('figures/roc_pr_curves.png', dpi=300, bbox_inches='tight')
+plt.savefig(f'{figures_dir}/roc_pr_curves.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 
@@ -317,7 +358,7 @@ for bars in [bars1, bars2]:
                 f'{height:.3f}', ha='center', va='bottom', fontsize=9)
 
 plt.tight_layout()
-plt.savefig('figures/metrics_comparison.png', dpi=300, bbox_inches='tight')
+plt.savefig(f'{figures_dir}/metrics_comparison.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 
@@ -338,7 +379,7 @@ for idx, feature in enumerate(features_full):
 plt.suptitle('Feature Distributions by Hail Occurrence', 
              fontsize=14, fontweight='bold')
 plt.tight_layout()
-plt.savefig('figures/feature_distributions.png', dpi=300, bbox_inches='tight')
+plt.savefig(f'{figures_dir}/feature_distributions.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 
@@ -358,7 +399,7 @@ for idx, (metrics, title) in enumerate([(metrics_full_scaled, 'Model A (Full)'),
     axes[idx].set_yticklabels(['No Hail', 'Hail'])
 
 plt.tight_layout()
-plt.savefig('figures/confusion_matrices.png', dpi=300, bbox_inches='tight')
+plt.savefig(f'{figures_dir}/confusion_matrices.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 
@@ -386,7 +427,7 @@ axes[1].axvline(x=0, color='black', linestyle='--', alpha=0.3)
 axes[1].grid(axis='x', alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('figures/coefficient_comparison.png', dpi=300, bbox_inches='tight')
+plt.savefig(f'{figures_dir}/coefficient_comparison.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 
@@ -423,7 +464,7 @@ ax2.set_ylim([0, 1.1])
 ax2.legend(loc='lower right')
 
 plt.tight_layout()
-plt.savefig('figures/pca_loadings_variance.png', dpi=300, bbox_inches='tight')
+plt.savefig(f'{figures_dir}/pca_loadings_variance.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 
@@ -464,7 +505,7 @@ ax.legend(fontsize=10)
 ax.grid(alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('figures/pca_biplot.png', dpi=300, bbox_inches='tight')
+plt.savefig(f'{figures_dir}/pca_biplot.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 
@@ -490,7 +531,7 @@ for idx, (bar, row) in enumerate(zip(bars, importances_df_sorted.iterrows())):
             va='center', fontsize=11, fontweight='bold')
 
 plt.tight_layout()
-plt.savefig('figures/rf_feature_importances.png', dpi=300, bbox_inches='tight')
+plt.savefig(f'{figures_dir}/rf_feature_importances.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 
@@ -528,7 +569,7 @@ plt.suptitle('Partial Dependence Plots: How Each Feature Affects Hail Probabilit
              fontsize=14, fontweight='bold', y=1.02)
 
 plt.tight_layout()
-plt.savefig('figures/rf_partial_dependence.png', dpi=300, bbox_inches='tight')
+plt.savefig(f'{figures_dir}/rf_partial_dependence.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 
@@ -549,7 +590,7 @@ ax.set_title('Sample Decision Tree from Random Forest (Depth Limited to 3)',
              fontsize=14, fontweight='bold')
 
 plt.tight_layout()
-plt.savefig('figures/rf_sample_tree.png', dpi=300, bbox_inches='tight')
+plt.savefig(f'{figures_dir}/rf_sample_tree.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 
@@ -579,7 +620,7 @@ ax.legend(fontsize=10, loc='lower right')
 ax.grid(alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('figures/all_models_roc_comparison.png', dpi=300, bbox_inches='tight')
+plt.savefig(f'{figures_dir}/all_models_roc_comparison.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 
@@ -624,7 +665,7 @@ for bars in [bars1, bars2, bars3, bars4, bars5]:
                 f'{height:.2f}', ha='center', va='bottom', fontsize=6)
 
 plt.tight_layout()
-plt.savefig('figures/all_models_metrics_comparison.png', dpi=300, bbox_inches='tight')
+plt.savefig(f'{figures_dir}/all_models_metrics_comparison.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 
@@ -673,5 +714,6 @@ else:
             bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.5))
 
 plt.tight_layout()
-plt.savefig('figures/rf_learning_curve.png', dpi=300, bbox_inches='tight')
+plt.savefig(f'{figures_dir}/rf_learning_curve.png', dpi=300, bbox_inches='tight')
 plt.close()
+
