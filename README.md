@@ -1,7 +1,20 @@
 # Predicting Significant Hail in the Central Great Plains: A Comparison of Atmospheric Instability Models
 
 
-### In this repository, we use ERA5 data to analyze how CAPE, wind shear, and freezing level affect significant hail formation using different ML models and dataset approaches.
+### In this repository, we use ERA5 data to analyze how CAPE, wind shear, and freezing level affect significant hail formation using different ML models and dataset approaches. 5 different models are two datasets are tested. 
+
+- Dataset 1: hail data + daily atmospheric data at 00Z  
+- Dataset 2: hail data + daily atmospheric data at time of maximum CAPE value for that day  
+
+* Model A: Full Linear Logistic Regression (CAPE, wind shear, and freezing level)
+* Model B: Reduced Linear Logistic Regression (CAPE only)
+* Model C: PCA + Logistic Regression
+* Model D: Random Forest Classifier
+* Model E: No Shear Linear Logistic Regression
+
+We found that Model D (Random Forest) works best for Dataset 1 (hail data + daily atmoshperic data t 00Z), while Models A & C (Full Linear Logistic Regression and PCA) performed best for Datset 2 (hail data + atmospheric data at time of maximum CAPE), with Model D (Random Forest) in close second.
+
+
  ---
   #### Analysis Script
   To run: `python HailAnaylsis.py`
