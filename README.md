@@ -60,7 +60,7 @@
 
 ---
   #### Figures
-The following results are included, and generated in figures/fixed_time or figures/daily_max_cape depending on which dataset is used in HailAnalysis.py
+The following results are included, but can also be generated from running `HailAnalysis.py`. These are located in `figures/fixed_time` or `figures/daily_max_cape` depending on which dataset is used in HailAnalysis.py.
   * all_models_metrics_comparison.png
   * all_models_roc_comparison.png
   * coefficient_comparison.png
