@@ -79,7 +79,7 @@
 #### Data Download Scripts
 To download your own data, run the python download scripts. You can choose either fixed 00Z atmoshperic data approach (initial) or maximum daily CAPE (secondary) approach. This assumes you have your CDS API key set up on your machine: https://cds.climate.copernicus.eu/how-to-api
 * run `python boxed_data_download.py` for fixed 00Z hail atmoshperic data + hail (initial approach, quicker)
-* run `python boxed_datadownload_daily_max_cape.py` for maximum CAPE atmospheric data + hail (secondary approach, takes several hours)
+* run `python boxed_data_download_daily_max_cape.py` for maximum CAPE atmospheric data + hail (secondary approach, takes several hours)
 
 
 ---
