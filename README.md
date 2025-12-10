@@ -42,9 +42,10 @@
     * Date range: April 2, 2020 to September 29, 2021
     * Spatial coverage: Hail Alley (33-42°N, 103-94°W)
 * final_dataset_boxed_daily_max_cape.csv (Maximum daily CAPE extraction)
-    * Final cleaned dataset using daily maximum CAPE extraction method
+    * Final cleaned dataset, same as final_dataset_boxed.csv, but using daily maximum CAPE instead of fixed time of 00Z
     * Atmospheric conditions extracted at time of maximum CAPE each day
-    * Performs better with linear models 
+    * Assumes hail occurs at same time as maximum CAPE, instead of guessing that hail occurs around 6pm CDT each day
+    * Different approach, neither is perfect because hail reports from NOAA have no time fields, just date
 
 
 
