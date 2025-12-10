@@ -60,13 +60,14 @@
 
 ---
   #### Figures
+The following results are included, and generated in figures/fixed_time or figures/daily_max_cape depending on which dataset is used in HailAnalysis.py
   * all_models_metrics_comparison.png
   * all_models_roc_comparison.png
   * coefficient_comparison.png
   * confusion_matrices.png
   * feature_distributions.png
-  * figures/metrics_comparison.png
-  * figures/pca_biplot.png
+  * metrics_comparison.png
+  * pca_biplot.png
   * pca_loadings_variance.png
   * rf_feature_importances.png
   * rf_learning_curve.png
