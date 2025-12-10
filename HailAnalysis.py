@@ -56,11 +56,11 @@ else:
             print("Invalid input. Please enter 1, 2, 'fixed_time', or 'daily_max_cape'")
 
 if dataset_choice == 'fixed_time':
-    data_file = 'data/final_dataset_boxed.csv'
+    data_file = 'data/final_dataset_fixed_time.csv'
     figures_dir = 'figures/fixed_time'  
     dataset_label = "00Z Fixed Time Extraction"
 elif dataset_choice == 'daily_max_cape':
-    data_file = 'data/final_dataset_boxed_daily_max_cape.csv'
+    data_file = 'data/final_dataset_daily_max_cape.csv'
     figures_dir = 'figures/daily_max_cape'  
     dataset_label = "Daily Maximum CAPE Extraction"
 

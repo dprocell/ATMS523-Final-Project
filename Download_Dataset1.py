@@ -21,34 +21,23 @@ for year in [2020, 2021]:
     df = pd.read_csv(url)
     hail_dfs.append(df)
 
-# Combine years
 hail_df = pd.concat(hail_dfs, ignore_index=True)
-
-# Parse existing date column (it's in YYYY-MM-DD format already)
 hail_df['date'] = pd.to_datetime(hail_df['date'])
-
-# Filter for Hail Alley (33-42°N, -103 to -94°W)
 hail_df = hail_df[
     (hail_df['slat'] >= 33) & (hail_df['slat'] <= 42) &
     (hail_df['slon'] >= -103) & (hail_df['slon'] <= -94)
 ]
-
-# Filter for April-September
 hail_df = hail_df[
     (hail_df['mo'] >= 4) & (hail_df['mo'] <= 9)
 ]
-
-# Filter for significant hail 
 hail_df = hail_df[hail_df['mag'] >= 1.0]
 hail_df.to_csv('data/hail_reports.csv', index=False)
-try:
-    c = cdsapi.Client()
-except Exception as e:
-    print("ERROR: Could not initialize CDS API client")
+
+c = cdsapi.Client()
 
 region = [42, -103, 33, -94]
 for year in [2020, 2021]:
-    for month in range(4, 10):  # April through September
+    for month in range(4, 10): 
         
         filename = f'data/era5_raw/era5_single_{year}_{month:02d}.nc'
         
@@ -105,7 +94,6 @@ for year in [2020, 2021]:
         expected_files.append(f'data/era5_raw/era5_winds_{year}_{month:02d}.nc')
 
 
-# Load all ERA5 data
 single_files = [f'data/era5_raw/era5_single_{year}_{month:02d}.nc' 
                 for year in [2020, 2021] for month in range(4, 10)]
 winds_files = [f'data/era5_raw/era5_winds_{year}_{month:02d}.nc' 
@@ -114,7 +102,6 @@ winds_files = [f'data/era5_raw/era5_winds_{year}_{month:02d}.nc'
 ds_single = xr.open_mfdataset(single_files, combine='by_coords')
 ds_winds = xr.open_mfdataset(winds_files, combine='by_coords')
 
-# Handle vairable names
 var_names_single = list(ds_single.variables.keys())
 var_names_winds = list(ds_winds.variables.keys())
 
@@ -237,8 +224,6 @@ for date_idx, date in enumerate(hail_dates):
     
     while generated < samples_per_day and attempts < samples_per_day * 20:
         attempts += 1
-        
-        # Random location in hail alley
         rand_lat = np.random.uniform(LAT_MIN, LAT_MAX)
         rand_lon = np.random.uniform(LON_MIN, LON_MAX)
         
@@ -267,17 +252,13 @@ non_hail_samples_df = pd.DataFrame(non_hail_samples)
 # Combine hail and non hail samples
 final_df = pd.concat([hail_samples_df, non_hail_samples_df], ignore_index=True)
 
-# Check if we have any data
-if len(final_df) == 0:
-    print(" You have no data!!")
-
 # Remove hail with CAPE = 0
 cape_zero_hail = ((final_df['hail_occurred'] == 1) & (final_df['cape'] == 0)).sum()
-print("Found", cape_zero_hail, "hail samples with CAPE = 0. Will be removed.")
+print("Samples with CAPE=0:", cape_zero_hail, "Will be removed")
 
 final_df = final_df[~((final_df['hail_occurred'] == 1) & (final_df['cape'] == 0))]
 final_df = final_df.sample(frac=1, random_state=42).reset_index(drop=True)
 final_df = final_df.dropna()
-final_df.to_csv('data/final_dataset_boxed.csv', index=False)
+final_df.to_csv('data/final_dataset_time_fixed.csv', index=False)
 
 print(final_df.head(10))

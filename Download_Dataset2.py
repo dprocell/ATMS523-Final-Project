@@ -204,7 +204,4 @@ final_df = pd.concat([pd.DataFrame(hail_samples), pd.DataFrame(non_hail_samples)
 final_df = final_df[~((final_df['hail_occurred'] == 1) & (final_df['cape'] == 0))]
 final_df = final_df.sample(frac=1, random_state=42).reset_index(drop=True)
 final_df = final_df.dropna()
-final_df.to_csv('data/final_dataset_boxed_daily_max_cape.csv', index=False)
-
-print(f"Dataset created: {len(final_df)} samples")
-print(f"Hail: {(final_df['hail_occurred']==1).sum()}, Non-hail: {(final_df['hail_occurred']==0).sum()}")
+final_df.to_csv('data/final_dataset_daily_max_cape.csv', index=False)
