@@ -1,7 +1,10 @@
 # Predicting Significant Hail in the Central Great Plains: A Comparison of Atmospheric Instability Models
 
 
-### In this repository, we use ERA5 data to analyze how CAPE, wind shear, and freezing level affect significant hail formation using different ML models.
+### In this repository, we use ERA5 data to analyze how CAPE, wind shear, and freezing level affect significant hail formation using different ML models and dataset approaches.
+ ---
+  #### Analysis Script
+  To run: `python HailAnaylsis.py`
 
 ---
 #### Data Included
@@ -55,10 +58,6 @@
 
 <img width="450" height="270" alt="box_concept" src="https://github.com/user-attachments/assets/bc73ce6c-ebd4-4377-9e06-0056132cecd5" />
 
- ---
-  #### Analysis Script
-  To run: `python HailAnaylsis.py`
-
 ---
   #### Figures
   * all_models_metrics_comparison.png
@@ -77,10 +76,10 @@
 
 
 ---
-#### Data Download script
+#### Data Download Scripts
 To download your own data, run the python download scripts. You can choose either fixed 00Z atmoshperic data approach (initial) or maximum daily CAPE (secondary) approach. This assumes you have your CDS API key set up on your machine: https://cds.climate.copernicus.eu/how-to-api
-* run `python boxed_data_download.py` for fixed 00Z hail atmoshperic data + hail (initial approach)
-* run `python boxed_datadownload_daily_max_cape.py` for maximum CAPE atmospheric data + hail (secondary approach)  
+* run `python boxed_data_download.py` for fixed 00Z hail atmoshperic data + hail (initial approach, quicker)
+* run `python boxed_datadownload_daily_max_cape.py` for maximum CAPE atmospheric data + hail (secondary approach, takes several hours)
 
 
 ---
