@@ -1,7 +1,7 @@
 # Predicting Significant Hail in the Central Great Plains: A Comparison of Atmospheric Instability Models
 
 
-### In this repository, we use ERA5 data to analyze how CAPE, wind shear, and freezing level affect significant hail formation using different ML models and dataset approaches. 5 different models are two datasets are tested. 
+In this repository, we use ERA5 data to analyze how CAPE, wind shear, and freezing level affect significant hail formation using different ML models and dataset approaches. 5 different models are two datasets are tested. 
 
 - Dataset 1: hail data + daily atmospheric data at 00Z  
 - Dataset 2: hail data + daily atmospheric data at time of maximum CAPE value for that day  
